@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Usuario = require('../models/usuario');
+const bcrypt = require('bcryptjs');
+
 /* GET users listing. */
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
@@ -43,7 +45,7 @@ router.post('/', (req, res) => {
   const usuario = new Usuario({
     nombre: body.nombre,
     email: body.email,
-    password: body.password,
+    password: bcrypt.hashSync(body.password, 8),
     image: body.image,
     role: body.role
   });
