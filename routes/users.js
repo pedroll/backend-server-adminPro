@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
   });
   usuario.save((err, usuario) => {
     if (err) {
-      return res.status(500)
+      return res.status(400)
         .json({
           ok: false,
           mensaje: 'Error guardando usuario',
