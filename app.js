@@ -18,11 +18,6 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// conexion BD
-// mongoose.conexion.openUri('mongodb://localhost:27017/hospitaldb',{
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
 mongoose.connect('mongodb://localhost:27017/hospitaldb', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -35,18 +30,6 @@ db.once('open', function () {
     // we're connected!
 });
 
-
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb://localhost:27017/hospitaldb?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
-// client.connect(err => {
-//     const collection = client.db("test").collection("devices");
-//     // perform actions on the collection object
-//     client.close();
-// });
 module.exports = app;
 //module.exports = mongoose;
 
