@@ -1,0 +1,55 @@
+const express = require('express');
+const router = express.Router();
+const Usuario = require('../models/usuario');
+const bcrypt = require('bcryptjs');
+
+
+router.post('/', (req, res) => {
+
+  const body = req.body;
+
+  Usuario.findOne({ email: body.email }, (err, usuariobd) => {
+
+    if (err) {
+      return res.status(500)
+        .json({
+          ok: false,
+          mensaje: 'Error al buscar usuario',
+          errors: err
+        });
+    }
+
+    if (!usuariobd) {
+      return res.status(400)
+        .json({
+          ok: false,
+          mensaje: `credenciales incorrectas - email`
+        });
+    }
+
+    if (!bcrypt.compareSync(body.password, usuariobd.password)) {
+      return res.status(400)
+        .json({
+          ok: false,
+          mensaje: `credenciales incorrectas - pass`
+        });
+    }
+
+    usuariobd.password = ';)';
+    res.status(200)
+      .json(
+        {
+          ok: true,
+          mensaje: 'peticion realizada correctamente',
+          body: body,
+          usuariobd: usuariobd
+        }
+      );
+
+  });
+
+
+});
+
+
+module.exports = router;

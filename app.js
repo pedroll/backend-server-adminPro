@@ -5,6 +5,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/login');
 // const bodyParser = require('body-parser');
 
 // express
@@ -25,6 +26,7 @@ app.use(cookieParser());
 // rutas
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 
 // mongo
 mongoose.connect(

@@ -94,8 +94,7 @@ router.put('/:id', (req, res) => {
       return res.status(400)
         .json({
           ok: false,
-          mensaje: `Error  usuario ${id} no encontrado`,
-          errors: err
+          mensaje: `Error  usuario ${id} no encontrado`
         });
     }
 
@@ -162,7 +161,7 @@ router.delete('/:id', (req, res) => {
     res.status(200)
       .json({
         ok: true,
-        mensaje: 'usuario actualizado',
+        mensaje: 'usuario borrado',
         usuario: usuarioborrado
       });
 
