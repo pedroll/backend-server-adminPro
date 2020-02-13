@@ -30,8 +30,10 @@ app.use('/users', usersRouter);
 mongoose.connect(
   'mongodb://localhost:27017/hospitaldb',
   {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+
   });
 const db = mongoose.connection;
 db.on(

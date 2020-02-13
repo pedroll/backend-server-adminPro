@@ -4,6 +4,7 @@ const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
 
 /* GET users listing. */
+// obtener usuarios
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
 
@@ -29,7 +30,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-
+// crear usuario
 router.post('/', (req, res) => {
   // utilizamos middleware body-parser
   //  if (err) {
@@ -49,7 +50,7 @@ router.post('/', (req, res) => {
     image: body.image,
     role: body.role
   });
-  usuario.save((err, usuario) => {
+  usuario.save((err, usuarioGuardado) => {
     if (err) {
       return res.status(400)
         .json({
@@ -59,14 +60,76 @@ router.post('/', (req, res) => {
         });
     }
 
-    res.status(200)
+    usuarioGuardado.password = ';)';
+    res.status(201)
       .json({
         ok: true,
         mensaje: 'usuario anadido',
-        usuario: usuario
+        usuario: usuarioGuardado
       });
 
   });
 
 });
+
+// actualizar usuario
+router.put('/:id', (req, res) => {
+
+  const id = req.params.id;
+  const body = req.body;
+
+  // buscamos usuario en bdd
+  Usuario.findById(id, (err, usuarioEncontrado) => {
+
+    // errores
+    if (err) {
+      return res.status(500)
+        .json({
+          ok: false,
+          mensaje: 'Error  al buscar usuario',
+          errors: err
+        });
+    }
+    if (!usuarioEncontrado) {
+      return res.status(400)
+        .json({
+          ok: false,
+          mensaje: `Error  usuario ${id} no encontrado`,
+          errors: err
+        });
+    }
+
+    usuarioEncontrado.nombre = body.nombre;
+    usuarioEncontrado.email = body.email;
+    // usuarioEncontrado.password= bcrypt.hashSync(body.password, 8);
+    // usuarioEncontrado.image= body.image;
+    usuarioEncontrado.role = body.role;
+
+    usuarioEncontrado.save((err, usuarioGuardado) => {
+
+      if (err) {
+        return res.status(400)
+          .json({
+            ok: false,
+            mensaje: 'Error actualizando usuario',
+            errors: err
+          });
+      }
+
+      usuarioGuardado.password = ';)';
+      res.status(200)
+        .json({
+          ok: true,
+          mensaje: 'usuario actualizado',
+          usuario: usuarioGuardado
+        });
+
+    });
+
+  });
+
+
+});
+
+
 module.exports = router;
