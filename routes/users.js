@@ -131,5 +131,45 @@ router.put('/:id', (req, res) => {
 
 });
 
+// borrar usuario
+router.delete('/:id', (req, res) => {
+
+  const id = req.params.id;
+  //const body = req.body;
+
+  // buscamos usuario en bdd
+  Usuario.findByIdAndRemove(id, (err, usuarioborrado) => {
+
+    // errores
+    if (err) {
+      return res.status(500)
+        .json({
+          ok: false,
+          mensaje: 'Error   borrando usuario',
+          errors: err
+        });
+    }
+    if (!usuarioborrado) {
+      return res.status(400)
+        .json({
+          ok: false,
+          mensaje: `Error  usuario ${id} no encontrado`,
+          errors: err
+        });
+    }
+
+    usuarioborrado.password = ';)';
+    res.status(200)
+      .json({
+        ok: true,
+        mensaje: 'usuario actualizado',
+        usuario: usuarioborrado
+      });
+
+  });
+
+
+});
+
 
 module.exports = router;
