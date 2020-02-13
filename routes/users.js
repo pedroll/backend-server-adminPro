@@ -27,4 +27,44 @@ router.get('/', (req, res, next) => {
     });
 });
 
+
+router.post('/', (req, res) => {
+  // utilizamos middleware body-parser
+  //  if (err) {
+  //    return res.status(500)
+  //      .json({
+  //        ok: false,
+  //        mensaje: 'Error cargando usuario',
+  //        errors: err
+  //      });
+  //  }
+
+  const body = req.body;
+  const usuario = new Usuario({
+    nombre: body.nombre,
+    email: body.email,
+    password: body.password,
+    image: body.image,
+    role: body.role
+  });
+  usuario.save((err, usuario) => {
+    if (err) {
+      return res.status(500)
+        .json({
+          ok: false,
+          mensaje: 'Error guardando usuario',
+          errors: err
+        });
+    }
+
+    res.status(200)
+      .json({
+        ok: true,
+        mensaje: 'usuario anadido',
+        usuario: usuario
+      });
+
+  });
+
+});
 module.exports = router;

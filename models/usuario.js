@@ -11,19 +11,19 @@ const usuarioSchema = new Schema(
       required: [true, 'El usuario es requerido']
     },
     password: {
-            type: String,
-            required: [true, 'El usuario es requerido']
-        },
-        img: {
-            type: String,
-            required: false
-        },
-        role: {
-            type: String,
-            required: [true, 'El usuario es requerido'],
-            default: "USER_ROLE"
-        }
+      type: String,
+      required: [true, 'El usuario es requerido']
+    },
+    image: {
+      type: String,
+      required: false
+    },
+    role: {
+      type: String,
+      required: [true, 'El usuario es requerido'],
+      default: 'USER_ROLE'
     }
+  }
 );
 
 module.exports = mongoose.model('Usuario', usuarioSchema);
