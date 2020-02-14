@@ -3,6 +3,7 @@ const router = express.Router();
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { SEED } = require('../config/config');
 
 
 router.post('/', (req, res) => {
@@ -38,7 +39,7 @@ router.post('/', (req, res) => {
 
     // pasados los posibles errores generamos un token
     usuariobd.password = ';)';
-    const token = jwt.sign({ usuario: 'usuariobd' }, 'Çtu-s33d-sup3rs3gur0', { expiresIn: 14400 });
+    const token = jwt.sign({ usuario: 'usuariobd' }, SEED, { expiresIn: 14400 });
 
 
     usuariobd.password = ';)';

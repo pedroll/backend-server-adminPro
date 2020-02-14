@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
-
+const jwt = require('jsonwebtoken');
+const { SEED } = require('../config/config');
 /* GET users listing. */
 // obtener usuarios
 // eslint-disable-next-line no-unused-vars
@@ -28,6 +29,27 @@ router.get('/', (req, res, next) => {
         });
       //res.send('respond with a resource');
     });
+});
+
+// Middleware verificar token
+// a partir de aqui utilizaran el middleware
+router.use('/', (req, res, next) => {
+
+  const token = req.query.token;
+  jwt.verify(token, SEED, (err, decoded) => {
+
+    if (err) {
+      return res.status(401)
+        .json({
+          ok: false,
+          mensaje: 'Token incorrecto',
+          errors: err
+        });
+    }
+    next();
+
+  });
+
 });
 
 // crear usuario

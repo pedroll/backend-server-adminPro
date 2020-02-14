@@ -7,3 +7,8 @@ startmongo
 // del comando
 mongod --config /usr/local/etc/mongod.conf --fork
 ```
+scripts:
+```
+"start": "node ./bin/www",
+"startmon": "nodemon ./bin/www"
+```
