@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { SEED } = require('../config/config');
+
+// importamos el middleware para utilizarlo en las rutas que queremos
+const verificaToken = require('../middleware/autenticacion');
+
 /* GET users listing. */
 // obtener usuarios
 // eslint-disable-next-line no-unused-vars
@@ -31,38 +33,10 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// Middleware verificar token
-// a partir de aqui utilizaran el middleware
-router.use('/', (req, res, next) => {
-
-  const token = req.query.token;
-  jwt.verify(token, SEED, (err, decoded) => {
-
-    if (err) {
-      return res.status(401)
-        .json({
-          ok: false,
-          mensaje: 'Token incorrecto',
-          errors: err
-        });
-    }
-    next();
-
-  });
-
-});
 
 // crear usuario
-router.post('/', (req, res) => {
-  // utilizamos middleware body-parser
-  //  if (err) {
-  //    return res.status(500)
-  //      .json({
-  //        ok: false,
-  //        mensaje: 'Error cargando usuario',
-  //        errors: err
-  //      });
-  //  }
+// ponemos el middleware entre el path y el callback der post
+router.post('/', verificaToken, (req, res) => {
 
   const body = req.body;
   const usuario = new Usuario({
@@ -87,7 +61,8 @@ router.post('/', (req, res) => {
       .json({
         ok: true,
         mensaje: 'usuario anadido',
-        usuario: usuarioGuardado
+        usuario: usuarioGuardado,
+        usuarioToken: req.usuario
       });
 
   });
@@ -95,7 +70,7 @@ router.post('/', (req, res) => {
 });
 
 // actualizar usuario
-router.put('/:id', (req, res) => {
+router.put('/:id', verificaToken, (req, res) => {
 
   const id = req.params.id;
   const body = req.body;
@@ -153,7 +128,7 @@ router.put('/:id', (req, res) => {
 });
 
 // borrar usuario
-router.delete('/:id', (req, res) => {
+router.delete('/:id', verificaToken, (req, res) => {
 
   const id = req.params.id;
   //const body = req.body;
