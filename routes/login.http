@@ -1,0 +1,7 @@
+POST /login HTTP/1.1
+Host: localhost:3000
+Content-Type: application/x-www-form-urlencoded
+
+email=pedrollongo@gmail.com&password=123
+
+###

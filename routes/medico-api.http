@@ -1,0 +1,43 @@
+# curl --location --request GET 'http://localhost:3000/medico'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+GET http://localhost:3000/medico
+Content-Type: application/x-www-form-urlencoded
+
+###
+
+
+###
+# curl --location --request POST 'http://localhost:3000/medico'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+#--data-urlencode 'role= ROLE_ADMIN'
+#--data-urlencode 'password= ugftftufujytfjyt'
+#--data-urlencode 'nombre= pedro2'
+#--data-urlencode 'email= pedrollongo gmail.com'
+POST http://localhost:3000/medico?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiX2lkIjoiNWU0NWIxNWFkNmNmNDgyNjZkNTU4YTgxIiwibm9tYnJlIjoicGVkcm8yMTk5IiwiZW1haWwiOiJwZWRyb2xsb25nb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjspIiwiX192IjowfSwiaWF0IjoxNTgxODQ1NTY2LCJleHAiOjE1ODE4NTk5NjZ9.f6RDWZH-B6VWCsrJwChV2vqDSXYHhlQn-C4YD9JEHv0
+Content-Type: application/x-www-form-urlencoded
+
+nombre=medico2222&hospitalId=5e49186952dc8358e7a7ed7b
+
+###
+
+# curl --location --request PUT 'http://localhost:3000/medico/5e45882cb081db20873ff3a9'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+#--data-urlencode 'role=ADMIN_ROLE'
+#--data-urlencode 'password=ugftftufujytfjyt'
+#--data-urlencode 'nombre=pedro2122'
+#--data-urlencode 'email=pedrollongilo mail.com'
+PUT http://localhost:3000/medico/5e491f6e7cad665cb67df958?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiX2lkIjoiNWU0NWIxNWFkNmNmNDgyNjZkNTU4YTgxIiwibm9tYnJlIjoicGVkcm8yMTk5IiwiZW1haWwiOiJwZWRyb2xsb25nb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjspIiwiX192IjowfSwiaWF0IjoxNTgxODQ1NTY2LCJleHAiOjE1ODE4NTk5NjZ9.f6RDWZH-B6VWCsrJwChV2vqDSXYHhlQn-C4YD9JEHv0 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+nombre=medico xxxxx2&hospitalId=5e49186952dc8358e7a7ed7b
+
+###
+
+###
+
+DELETE /medico/5e47e20174aaaf280a29d2bd?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiX2lkIjoiNWU0NWIxNWFkNmNmNDgyNjZkNTU4YTgxIiwibm9tYnJlIjoicGVkcm8yMTk5IiwiZW1haWwiOiJwZWRyb2xsb25nb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjspIiwiX192IjowfSwiaWF0IjoxNTgxODQ1NTY2LCJleHAiOjE1ODE4NTk5NjZ9.f6RDWZH-B6VWCsrJwChV2vqDSXYHhlQn-C4YD9JEHv0 HTTP/1.1
+Host: localhost:3000
+Content-Type: application/x-www-form-urlencoded
+
+###
+
