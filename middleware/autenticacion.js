@@ -16,14 +16,11 @@ const verificaToken = function (req, res, next) {
           errors: err
         });
     }
+
+    // extraemos el usuario del token
     req.usuario = decoded.usuario;
     // con el next continua despues de pasar sin error
     next();
-    // res.status(200)
-    //   .json({
-    //     ok: true,
-    //     decoded: decoded
-    //   });
 
   });
 

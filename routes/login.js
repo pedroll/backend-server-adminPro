@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
 
     // pasados los posibles errores generamos un token
     usuariobd.password = ';)';
-    const token = jwt.sign({ usuario: 'usuariobd' }, SEED, { expiresIn: 14400 });
+    const token = jwt.sign({ usuario: usuariobd }, SEED, { expiresIn: 14400 });
 
 
     usuariobd.password = ';)';

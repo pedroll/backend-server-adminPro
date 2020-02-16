@@ -3,9 +3,12 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const hospitalRouter = require('./routes/hospital');
+const medicoRouter = require('./routes/medico');
 // const bodyParser = require('body-parser');
 
 // express
@@ -27,6 +30,8 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/hospital', hospitalRouter);
+app.use('/medico', medicoRouter);
 
 // mongo
 mongoose.connect(
@@ -35,6 +40,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false
 
   });
 const db = mongoose.connection;

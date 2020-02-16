@@ -1,0 +1,65 @@
+GET http://localhost:3000/
+Accept: */*
+Cache-Control: no-cache
+
+###
+GET http://localhost:3000/hospital
+Accept: */*
+Cache-Control: no-cache
+
+###
+# curl --location --request POST 'http://localhost:3000/users'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+#--data-urlencode 'role= ROLE_ADMIN'
+#--data-urlencode 'password= ugftftufujytfjyt'
+#--data-urlencode 'nombre= pedro2'
+#--data-urlencode 'email= pedrollongo gmail.com'
+POST http://localhost:3000/users
+Content-Type: application/x-www-form-urlencoded
+
+role=+ROLE_ADMIN&password=+ugftftufujytfjyt&nombre=+pedro2&email=+pedrollongo%40gmail.com
+
+<> 2020-02-13T060657.400.json
+<> 2020-02-13T055523.500.json
+<> 2020-02-13T055424.200.json
+
+###
+
+# curl --location --request PUT 'http://localhost:3000/users/5e45882cb081db20873ff3a9'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+#--data-urlencode 'role=ADMIN_ROLE'
+#--data-urlencode 'password=ugftftufujytfjyt'
+#--data-urlencode 'nombre=pedro2122'
+#--data-urlencode 'email=pedrollongilo mail.com'
+PUT http://localhost:3000/users/5e45882cb081db20873ff3a9
+Content-Type: application/x-www-form-urlencoded
+
+role=ADMIN_ROLE&password=ugftftufujytfjyt&nombre=pedro2122&email=pedrollongilo%40gmail.com
+
+###
+# curl --location --request DELETE 'http://localhost:3000/users/5e45882cb081db20873ff3a9'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+#--data-urlencode 'role=ADMIN_ROLE'
+#--data-urlencode 'password=ugftftufujytfjyt'
+#--data-urlencode 'nombre=pedro2122'
+#--data-urlencode 'email=pedrollongilo gmail.com'
+DELETE http://localhost:3000/users/5e45882cb081db20873ff3a9
+Content-Type: application/x-www-form-urlencoded
+
+role=ADMIN_ROLE&password=ugftftufujytfjyt&nombre=pedro2122&email=pedrollongilo%40gmail.com
+
+###
+
+DELETE /users/5e45810a0f82d91ecbacb766 HTTP/1.1
+Host: localhost:3000
+Content-Type: application/x-www-form-urlencoded
+
+role=ADMIN_ROLE&password=ugftftufujytfjyt&nombre=pedro2122&email=pedrollongilo@gmail.com
+
+<> 2020-02-13T091806.200.json
+<> 2020-02-13T091734.400.json
+
+###
+
+
+
