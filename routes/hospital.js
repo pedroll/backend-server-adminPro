@@ -9,6 +9,10 @@ const verificaToken = require('../middleware/autenticacion');
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
 
+  // offset paginacion
+  let desde = req.query.desde || 0;
+  desde = Number(desde);
+
   Hospital.find(
     {},
     (err, hospitales) => {
@@ -21,14 +25,28 @@ router.get('/', (req, res, next) => {
           });
       }
 
-      res.status(200)
-        .json({
-          ok: true,
-          hospitales: hospitales
-        });
+      Hospital.count({}, (err, conteo) => {
+
+        const total = conteo;
+
+        res.status(200)
+          .json({
+            ok: true,
+            total: total,
+            hospitales: hospitales
+          });
+
+      });
+
+
     })
     // en lugar de mostrar campo usuario: usuarioId mostramos la fila usuariom pero solo columnas
-    .populate('usuario', 'nombre email');
+    .populate('usuario', 'nombre email')
+    // paginacion
+    .limit(5)
+    // offset paginacion
+    .skip(desde);
+
 });
 
 

@@ -1,6 +1,6 @@
 # curl --location --request GET 'http://localhost:3000/hospital'
 #--header 'Content-Type: application/x-www-form-urlencoded'
-GET http://localhost:3000/hospital
+GET http://localhost:3000/hospital?desde=5
 Content-Type: application/x-www-form-urlencoded
 
 ###

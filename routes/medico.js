@@ -9,6 +9,10 @@ const verificaToken = require('../middleware/autenticacion');
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
 
+  // offset paginacion
+  let desde = req.query.desde || 0;
+  desde = Number(desde);
+
   Medico.find(
     {},
     (err, medicos) => {
@@ -21,15 +25,28 @@ router.get('/', (req, res, next) => {
           });
       }
 
-      res.status(200)
-        .json({
-          ok: true,
-          medicos: medicos
-        });
+      Medico.count({}, (err, conteo) => {
+
+        const total = conteo;
+
+        res.status(200)
+          .json({
+            ok: true,
+            total: total,
+            medicos: medicos
+          });
+
+      });
+
+
     })
     // consulta join con id usuario e id hospital
     .populate('usuario', 'nombre email')
-    .populate('hospital');
+    .populate('hospital')
+    // paginacion
+    .limit(5)
+    // offset paginacion
+    .skip(desde);
 });
 
 

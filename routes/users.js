@@ -11,6 +11,10 @@ const verificaToken = require('../middleware/autenticacion');
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
 
+  // offset paginacion
+  let desde = req.query.desde || 0;
+  desde = Number(desde);
+
   Usuario.find(
     {},
     'nombre email image role',
@@ -19,18 +23,28 @@ router.get('/', (req, res, next) => {
         return res.status(500)
           .json({
             ok: false,
-            mensaje: 'Error cargando usuario',
+            mensaje: 'Error cargando usuarios',
             errors: err
           });
       }
 
-      res.status(200)
-        .json({
-          ok: true,
-          usuarios: usuarios
-        });
+      Usuario.count({}, (err, conteo) => {
+
+        const total = conteo;
+        res.status(200)
+          .json({
+            ok: true,
+            total: total,
+            usuarios: usuarios
+          });
+      });
+
       //res.send('respond with a resource');
-    });
+    })
+    // paginacion
+    .limit(5)
+    // offset paginacion
+    .skip(desde);
 });
 
 

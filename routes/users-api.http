@@ -1,6 +1,7 @@
-GET http://localhost:3000/
+GET http://localhost:3000/users?desde=10
 Accept: */*
 Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
 
 ###
 # curl --location --request POST 'http://localhost:3000/users'
@@ -8,11 +9,11 @@ Cache-Control: no-cache
 #--data-urlencode 'role= ROLE_ADMIN'
 #--data-urlencode 'password= ugftftufujytfjyt'
 #--data-urlencode 'nombre= pedro2'
-#--data-urlencode 'email= pedrollongo@gmail.com'
-POST http://localhost:3000/users
+#--data-urlencode 'email= pedrollongogmail.com'
+POST http://localhost:3000/users?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiX2lkIjoiNWU0NWIxNWFkNmNmNDgyNjZkNTU4YTgxIiwibm9tYnJlIjoicGVkcm8yMTk5IiwiZW1haWwiOiJwZWRyb2xsb25nb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjspIiwiX192IjowfSwiaWF0IjoxNTgxODQ1NTY2LCJleHAiOjE1ODE4NTk5NjZ9.f6RDWZH-B6VWCsrJwChV2vqDSXYHhlQn-C4YD9JEHv0
 Content-Type: application/x-www-form-urlencoded
 
-role=+ROLE_ADMIN&password=+ugftftufujytfjyt&nombre=+pedro2&email=+pedrollongo%40gmail.com
+role=ADMIN_ROLE&password=ugftftufujytfjyt&nombre=pedro47196523&email=pedrollong3o694751%40gmail.com
 
 <> 2020-02-13T060657.400.json
 <> 2020-02-13T055523.500.json
@@ -25,7 +26,7 @@ role=+ROLE_ADMIN&password=+ugftftufujytfjyt&nombre=+pedro2&email=+pedrollongo%40
 #--data-urlencode 'role=ADMIN_ROLE'
 #--data-urlencode 'password=ugftftufujytfjyt'
 #--data-urlencode 'nombre=pedro2122'
-#--data-urlencode 'email=pedrollongilo@gmail.com'
+#--data-urlencode 'email=pedrollongilogmail.com'
 PUT http://localhost:3000/users/5e45882cb081db20873ff3a9
 Content-Type: application/x-www-form-urlencoded
 
@@ -37,7 +38,7 @@ role=ADMIN_ROLE&password=ugftftufujytfjyt&nombre=pedro2122&email=pedrollongilo%4
 #--data-urlencode 'role=ADMIN_ROLE'
 #--data-urlencode 'password=ugftftufujytfjyt'
 #--data-urlencode 'nombre=pedro2122'
-#--data-urlencode 'email=pedrollongilo@gmail.com'
+#--data-urlencode 'email=pedrollongilogmail.com'
 DELETE http://localhost:3000/users/5e45882cb081db20873ff3a9
 Content-Type: application/x-www-form-urlencoded
 
