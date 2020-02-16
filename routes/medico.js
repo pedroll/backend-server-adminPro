@@ -26,7 +26,10 @@ router.get('/', (req, res, next) => {
           ok: true,
           medicos: medicos
         });
-    });
+    })
+    // consulta join con id usuario e id hospital
+    .populate('usuario', 'nombre email')
+    .populate('hospital');
 });
 
 
@@ -39,7 +42,7 @@ router.post('/', verificaToken, (req, res) => {
     nombre: body.nombre,
     img: body.image,
     hospital: body.hospitalId,
-    usuario: body.usuarioId
+    usuario: req.usuario._id
   });
   medico.save((err, medicoGuardado) => {
     if (err) {
@@ -47,7 +50,8 @@ router.post('/', verificaToken, (req, res) => {
         .json({
           ok: false,
           mensaje: 'Error guardando medico',
-          errors: err
+          errors: err,
+          body: body
         });
     }
 
@@ -56,8 +60,6 @@ router.post('/', verificaToken, (req, res) => {
         ok: true,
         mensaje: 'medico anadido',
         medico: medicoGuardado,
-        usuarioToken: req.usuario,
-        body: body
       });
 
   });
@@ -93,7 +95,7 @@ router.put('/:id', verificaToken, (req, res) => {
     medicoEncontrado.nombre = body.nombre;
     medicoEncontrado.img = body.image;
     medicoEncontrado.hospital = body.hospitalId;
-    medicoEncontrado.usuario = body.usuarioId;
+    medicoEncontrado.usuario = req.usuario._id;
 
     medicoEncontrado.save((err, medicoGuardado) => {
 

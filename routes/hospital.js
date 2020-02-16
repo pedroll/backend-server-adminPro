@@ -26,7 +26,9 @@ router.get('/', (req, res, next) => {
           ok: true,
           hospitales: hospitales
         });
-    });
+    })
+    // en lugar de mostrar campo usuario: usuarioId mostramos la fila usuariom pero solo columnas
+    .populate('usuario', 'nombre email');
 });
 
 
@@ -91,7 +93,7 @@ router.put('/:id', verificaToken, (req, res) => {
 
     hospitalEncontrado.nombre = body.nombre;
     hospitalEncontrado.image = body.image;
-    hospitalEncontrado.usuario = body.usuario;
+    hospitalEncontrado.usuario = req.usuario._id;
 
     hospitalEncontrado.save((err, hospitalGuardado) => {
 
@@ -108,8 +110,8 @@ router.put('/:id', verificaToken, (req, res) => {
       res.status(200)
         .json({
           ok: true,
-          mensaje: 'usuario actualizado',
-          usuario: hospitalGuardado
+          mensaje: 'hospital actualizado',
+          hospital: hospitalGuardado
         });
 
     });
