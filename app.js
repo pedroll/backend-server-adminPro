@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const hospitalRouter = require('./routes/hospital');
 const medicoRouter = require('./routes/medico');
+const busquedaRouter = require('./routes/busqueda');
 // const bodyParser = require('body-parser');
 
 // express
@@ -32,6 +33,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/hospital', hospitalRouter);
 app.use('/medico', medicoRouter);
+app.use('/busqueda', busquedaRouter);
 
 // mongo
 mongoose.connect(
