@@ -5,6 +5,47 @@ const Usuario = require('../models/usuario');
 const Medico = require('../models/medico');
 
 
+router.get('/coleccion/:tabla/:busqueda', (req, res) => {
+
+  const tabla = req.params.tabla;
+  const busqueda = req.params.busqueda;
+  // creamos regexp para busquedas insensibles
+  const regexp = new RegExp(busqueda, 'i');
+  let promesa;
+
+  switch (tabla) {
+    case 'usuario':
+      promesa = buscarUsuarios(busqueda, regexp);
+      break;
+    case 'hospital':
+      promesa = buscarHospitalees(busqueda, regexp);
+      break;
+    case 'medico':
+      promesa = buscarMedicos(busqueda, regexp);
+      break;
+    default:
+      return res.status(400)
+        .json({
+          ok: false,
+          //total: total,
+          mensaje: `error al buscar en${tabla} las tablas validas son usuario, hospital, medico`,
+          error: { mensaje: `error al buscar en${tabla} las tablas validas son usuario, hospital, medico` }
+        });
+  }
+  promesa.then((data) => {
+    console.log(promesa);
+    res.status(200)
+      .json({
+        ok: true,
+        //total: total,
+        [tabla]: data
+      });
+  });
+
+
+});
+
+
 // obtener hospitals
 // eslint-disable-next-line no-unused-vars
 router.get('/todo/:busqueda', (req, res, next) => {
