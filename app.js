@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -10,6 +11,7 @@ const loginRouter = require('./routes/login');
 const hospitalRouter = require('./routes/hospital');
 const medicoRouter = require('./routes/medico');
 const busquedaRouter = require('./routes/busqueda');
+const uploadRouter = require('./routes/upload');
 // const bodyParser = require('body-parser');
 
 // express
@@ -20,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 // body-parser recibimos el post http y lo convierte en objeto javascript
 // parse application/x-www-form-urlencoded
@@ -34,6 +37,7 @@ app.use('/login', loginRouter);
 app.use('/hospital', hospitalRouter);
 app.use('/medico', medicoRouter);
 app.use('/busqueda', busquedaRouter);
+app.use('/upload', uploadRouter);
 
 // mongo
 mongoose.connect(

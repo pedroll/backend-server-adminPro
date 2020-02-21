@@ -5,7 +5,7 @@ const medicoSchema = new Schema({
     type: String,
     required: [true, 'El	nombre	es	necesario']
   },
-  img: {
+  image: {
     type: String,
     required: false
   },
