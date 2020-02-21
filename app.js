@@ -56,10 +56,14 @@ db.on(
 db.once(
   'open',
   () => {
-      console.log('conectado a base de datos');
-      // we're connected!
+    console.log('conectado a base de datos');
+    // we're connected!
   });
 
+// mostrar archivos en ruta
+let serveIndex = require('serve-index');
+app.use(express.static(__dirname + '/'));
+app.use('/uploads', serveIndex(__dirname + '/uploads'));
 // body parser
 
 module.exports = app;
