@@ -81,10 +81,16 @@ function buscarHospitalees(busqueda, regexp) {
 
   return new Promise(
     (resolve, reject) => {
+<<<<<<< HEAD
       Hospital.find({ nombre: regexp })
         .populate('usuario', 'nombre email')
         .populate('medico', 'nombre usuario')
         .exec((err, hospitales) => {
+=======
+      Hospital.find(
+        { nombre: regexp },
+        (err, hospitales) => {
+>>>>>>> origin/master
           if (err) {
             reject('Error cargando hospital', err);
           } else {
@@ -121,21 +127,15 @@ function buscarUsuarios(busqueda, regexp) {
   return new Promise(
     (resolve, reject) => {
       Usuario.find(
-        {},
-        'nombre email'
-      )
-        // conjunto de condiciones or buscamos en ambas columnas
-        .or([{ nombre: regexp }, { email: regexp }])
-        .populate('usuario', 'nombre email')
-        .exec(
-          (err, usuarios) => {
-            if (err) {
-              reject('Error cargando usuarios', err);
-            } else {
-              resolve(usuarios);
-            }
+        (err, usuarios) => {
+          if (err) {
+            reject('Error cargando usuarios', err);
+          } else {
+            resolve(usuarios);
           }
-        )
+        })
+        // conjunto de condiciones or
+        .or([{ nombre: regexp }, { email: regexp }])
       ;
     }
   );
