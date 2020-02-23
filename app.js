@@ -1,5 +1,4 @@
 const express = require('express');
-//let path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
@@ -12,6 +11,7 @@ const hospitalRouter = require('./routes/hospital');
 const medicoRouter = require('./routes/medico');
 const busquedaRouter = require('./routes/busqueda');
 const uploadRouter = require('./routes/upload');
+const imagenesRouter = require('./routes/imagenes');
 // const bodyParser = require('body-parser');
 
 // express
@@ -38,6 +38,7 @@ app.use('/hospital', hospitalRouter);
 app.use('/medico', medicoRouter);
 app.use('/busqueda', busquedaRouter);
 app.use('/upload', uploadRouter);
+app.use('/img', imagenesRouter);
 
 // mongo
 mongoose.connect(
@@ -61,9 +62,9 @@ db.once(
   });
 
 // mostrar archivos en ruta
-let serveIndex = require('serve-index');
-app.use(express.static(__dirname + '/'));
-app.use('/uploads', serveIndex(__dirname + '/uploads'));
+// let serveIndex = require('serve-index');
+// app.use(express.static(__dirname + '/'));
+// app.use('/uploads', serveIndex(__dirname + '/uploads'));
 // body parser
 
 module.exports = app;
