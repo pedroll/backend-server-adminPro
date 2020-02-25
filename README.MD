@@ -12,3 +12,6 @@ scripts:
 "start": "node ./bin/www",
 "startmon": "nodemon ./bin/www"
 ```
+documentacion endpoints api:
+
+https://documenter.getpostman.com/view/352713/SzKWudKX?version=latest
