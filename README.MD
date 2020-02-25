@@ -1,6 +1,6 @@
 BACKEND-SERVER para aplicacion adminPro, angular avanzado MEAN
 ======
-La aplicacion utila como base de datos mongom para levantar el servidor:
+La aplicacion utiliza como base de datos mongo para levantar el servidor:
 ``` bash
 // con el shell alias
 startmongo
