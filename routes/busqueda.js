@@ -81,16 +81,11 @@ function buscarHospitalees(busqueda, regexp) {
 
   return new Promise(
     (resolve, reject) => {
-<<<<<<< HEAD
       Hospital.find({ nombre: regexp })
         .populate('usuario', 'nombre email')
         .populate('medico', 'nombre usuario')
         .exec((err, hospitales) => {
-=======
-      Hospital.find(
-        { nombre: regexp },
-        (err, hospitales) => {
->>>>>>> origin/master
+
           if (err) {
             reject('Error cargando hospital', err);
           } else {

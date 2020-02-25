@@ -5,8 +5,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="@types/mongoose" level="application" />
-    <orderEntry type="library" name="@types/node" level="application" />
-    <orderEntry type="library" name="@types/express" level="application" />
     <orderEntry type="library" name="@types/config" level="application" />
     <orderEntry type="library" name="@types/express-fileupload" level="application" />
     <orderEntry type="library" name="@types/mongoose" level="application" />
