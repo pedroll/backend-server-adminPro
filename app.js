@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
+//const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,6 +17,18 @@ const imagenesRouter = require('./routes/imagenes');
 
 // express
 const app = express();
+
+// CORS en produccion utilizar 'express cors' en lugar de esto
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+  res.header('Access-Control-Allow-Methods', 'DELETE, POST, PUT, GET, OPTIONS');
+  res.header('Allow', 'DELETE, POST, PUT, GET, OPTIONS');
+  next();
+});
+// app.use(cors());
+
 app.use(logger('dev'));
 // no es necesario body parser partir de express 4.16
 app.use(express.json());
