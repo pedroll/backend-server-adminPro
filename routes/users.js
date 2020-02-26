@@ -50,7 +50,7 @@ router.get('/', (req, res, next) => {
 
 // crear usuario
 // ponemos el middleware entre el path y el callback der post
-router.post('/', verificaToken, (req, res) => {
+router.post('/', (req, res) => {
 
   const body = req.body;
   const usuario = new Usuario({
