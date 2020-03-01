@@ -35,16 +35,17 @@ async function verify(token) {
 router.post('/google', async (req, res) => {
 
   const body = req.body;
-  const token = body.token;
+  const tokenGoogle = body.token;
 
-  const googleUser = await verify(token)
+  const googleUser = await verify(tokenGoogle)
     .catch((e) => {
       return res.status(403)
         .json(
           {
             ok: false,
             mensaje: 'error de token',
-            error: e
+            error: e,
+            tokenGoogle: tokenGoogle
           }
         );
     });
@@ -82,9 +83,9 @@ router.post('/google', async (req, res) => {
               {
                 ok: true,
                 mensaje: 'peticion realizada correctamente',
-                body: body,
                 id: usuarioBD._id,
-                token: token
+                token: token,
+                usuario: usuarioBD
               }
             );
         }
@@ -166,7 +167,7 @@ router.post('/', (req, res) => {
         {
           ok: true,
           mensaje: 'peticion realizada correctamente',
-          body: body,
+          usuario: usuariobd,
           id: usuariobd._id,
           token: token
         }
